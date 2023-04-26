@@ -23,7 +23,7 @@ export default function RestaurantCar() {
         </div>
         <div className="text-red-600">
           <Link href="/restaurant/milestones-stones">
-            View more information{' '}
+            View more information
           </Link>
         </div>
       </div>
