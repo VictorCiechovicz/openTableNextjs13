@@ -3,11 +3,9 @@ import Menu from './Menu'
 
 export default function DescriptionPortion() {
   return (
-    <div className="flex m-auto w-2/3 justify-between items-start 0 -mt-11">
-      <div className="bg-white w-[100%] rounded p-3 shadow">
-        <RestaurantNavBar />
-        <Menu />
-      </div>
+    <div className="bg-white w-[100%] rounded p-3 shadow">
+      <RestaurantNavBar />
+      <Menu />
     </div>
   )
 }

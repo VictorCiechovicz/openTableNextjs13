@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import RestaurantNavBar from '../components/RestaurantNavBar'
 import Title from '../components/Title'
@@ -9,7 +9,7 @@ import Review from '../components/Reviews'
 
 export default function DescriptionPortion() {
   return (
-    <div className="flex m-auto w-2/3 justify-between items-start 0 -mt-11">
+    <>
       <div className="bg-white w-[70%] rounded p-3 shadow">
         <RestaurantNavBar />
         <Title />
@@ -57,6 +57,6 @@ export default function DescriptionPortion() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
