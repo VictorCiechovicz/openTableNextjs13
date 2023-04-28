@@ -28,3 +28,5 @@ export default function SearchBar() {
     </div>
   )
 }
+
+//2cudY9Yuc2CqkwEw

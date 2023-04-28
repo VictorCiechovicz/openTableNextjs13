@@ -3,6 +3,7 @@ import Header from './components/Header'
 import SideBar from './components/SideBar'
 import RestaurantCar from './components/RestaurantCar'
 
+
 export default function Search() {
   return (
     <>
