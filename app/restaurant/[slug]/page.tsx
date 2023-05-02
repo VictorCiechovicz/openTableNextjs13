@@ -28,6 +28,7 @@ const fetchRestaurantsBySlug = async (slug: string): Promise<Restaurante> => {
   if (!restaurants) {
     throw new Error()
   }
+
   return restaurants
 }
 
@@ -37,10 +38,15 @@ export default async function RestaurantDetails({
   params: { slug: string }
 }) {
   const restaurant = await fetchRestaurantsBySlug(params.slug)
-  console.log(restaurant)
+
   return (
     <>
-      <DescriptionPortion />
+      <DescriptionPortion
+        images={restaurant.images}
+        slug={restaurant.slug}
+        title={restaurant.name}
+        description={restaurant.description}
+      />
     </>
   )
 }

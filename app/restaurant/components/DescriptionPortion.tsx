@@ -7,15 +7,27 @@ import Description from '../components/Description'
 import Images from '../components/Images'
 import Review from '../components/Reviews'
 
-export default function DescriptionPortion() {
+interface Props {
+  description: string
+  title: string
+  slug: string
+  images: string[]
+}
+
+export default function DescriptionPortion({
+  description,
+  title,
+  slug,
+  images
+}: Props) {
   return (
     <>
       <div className="bg-white w-[70%] rounded p-3 shadow">
-        <RestaurantNavBar />
-        <Title />
+        <RestaurantNavBar slug={slug} />
+        <Title title={title} />
         <Rating />
-        <Description />
-        <Images />
+        <Description description={description} />
+        <Images images={images} />
         <Review />
       </div>
       <div className="w-[27%] relative text-reg">
