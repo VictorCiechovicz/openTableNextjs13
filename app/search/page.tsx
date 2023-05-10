@@ -1,7 +1,7 @@
 import Header from './components/Header'
 import SideBar from './components/SideBar'
 import RestaurantCar from './components/RestaurantCar'
-import { PrismaClient } from '@prisma/client'
+import { PRICE, PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
@@ -40,7 +40,7 @@ const fetchCuisine = async () => {
 export default async function Search({
   searchParams
 }: {
-  searchparams: { city: string }
+  searchParams: { city?: string; cuisine?: string; price?: PRICE }
 }) {
   const restaurant = await fetchRestarantsByCity(searchParams.city)
   const location = await fetchLocation()
@@ -54,10 +54,7 @@ export default async function Search({
           {restaurant.length ? (
             <>
               {restaurant.map(rest => (
-                <RestaurantCar
-                  restaurant={rest}
-                  key={rest.id}
-                />
+                <RestaurantCar restaurant={rest} key={rest.id} />
               ))}
             </>
           ) : (
