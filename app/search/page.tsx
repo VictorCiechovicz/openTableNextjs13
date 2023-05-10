@@ -5,7 +5,40 @@ import { PRICE, PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-const fetchRestarantsByCity = (city: string | undefined) => {
+interface SearchParams {
+  city?: string
+  cuisine?: string
+  price?: PRICE
+}
+
+const fetchRestarantsByCity = (searchParams: SearchParams) => {
+  const where: any = {}
+
+  if (searchParams.city) {
+    const location = {
+      name: {
+        equals: searchParams.city.toLowerCase()
+      }
+    }
+    where.location = location
+  }
+
+  if (searchParams.cuisine) {
+    const cuisine = {
+      name: {
+        equals: searchParams.cuisine.toLowerCase()
+      }
+    }
+    where.cuisine = cuisine
+  }
+
+  if (searchParams.price) {
+    const price = {
+      equals: searchParams.price
+    }
+    where.price = price
+  }
+
   const select = {
     id: true,
     name: true,
@@ -16,16 +49,8 @@ const fetchRestarantsByCity = (city: string | undefined) => {
     slug: true
   }
 
-  if (!city) return prisma.restaurant.findMany({ select })
-
   return prisma.restaurant.findMany({
-    where: {
-      location: {
-        name: {
-          equals: city.toLowerCase()
-        }
-      }
-    },
+    where,
     select
   })
 }
@@ -40,16 +65,20 @@ const fetchCuisine = async () => {
 export default async function Search({
   searchParams
 }: {
-  searchParams: { city?: string; cuisine?: string; price?: PRICE }
+  searchParams: SearchParams
 }) {
-  const restaurant = await fetchRestarantsByCity(searchParams.city)
+  const restaurant = await fetchRestarantsByCity(searchParams)
   const location = await fetchLocation()
   const cuisine = await fetchCuisine()
   return (
     <>
       <Header />
       <div className="flex py-4 m-auto w-2/3 justify-between items-start text-black">
-        <SideBar location={location} cuisine={cuisine} />
+        <SideBar
+          searchParams={searchParams}
+          location={location}
+          cuisine={cuisine}
+        />
         <div className="w-5/6">
           {restaurant.length ? (
             <>
