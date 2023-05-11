@@ -5,30 +5,34 @@ import Title from '../components/Title'
 import Rating from '../components/Rating'
 import Description from '../components/Description'
 import Images from '../components/Images'
-import Review from '../components/Reviews'
+import Reviews from '../components/Reviews'
+import { Review } from '@prisma/client'
 
 interface Props {
   description: string
   title: string
   slug: string
   images: string[]
+  reviews: Review[]
+  
 }
 
 export default function DescriptionPortion({
   description,
   title,
   slug,
-  images
+  images,
+  reviews
 }: Props) {
   return (
     <>
-      <div className="bg-white w-[70%] rounded p-3 shadow">
+      <div className="bg-white w-[100%] rounded p-6 shadow">
         <RestaurantNavBar slug={slug} />
         <Title title={title} />
-        <Rating />
+        <Rating reviews={reviews} />
         <Description description={description} />
         <Images images={images} />
-        <Review />
+        <Reviews reviews={reviews} />
       </div>
       <div className="w-[27%] relative text-reg">
         <div className="fixed w-[15%] bg-white rounded p-3 shadow">

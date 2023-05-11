@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, Review } from '@prisma/client'
 import DescriptionPortion from '../components/DescriptionPortion'
 
 interface Restaurante {
@@ -7,6 +7,7 @@ interface Restaurante {
   slug: string
   images: string[]
   description: string
+  reviews: Review[]
 }
 
 const prisma = new PrismaClient()
@@ -21,7 +22,8 @@ const fetchRestaurantsBySlug = async (slug: string): Promise<Restaurante> => {
       name: true,
       images: true,
       description: true,
-      slug: true
+      slug: true,
+      reviews: true
     }
   })
 
@@ -46,6 +48,7 @@ export default async function RestaurantDetails({
         slug={restaurant.slug}
         title={restaurant.name}
         description={restaurant.description}
+        reviews={restaurant.reviews}
       />
     </>
   )

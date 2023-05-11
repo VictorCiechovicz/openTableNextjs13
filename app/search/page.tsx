@@ -1,6 +1,6 @@
 import Header from './components/Header'
 import SideBar from './components/SideBar'
-import RestaurantCar from './components/RestaurantCar'
+import RestaurantCard from './components/RestaurantCard'
 import { PRICE, PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
@@ -46,7 +46,8 @@ const fetchRestarantsByCity = (searchParams: SearchParams) => {
     price: true,
     cuisine: true,
     location: true,
-    slug: true
+    slug: true,
+    reviews: true
   }
 
   return prisma.restaurant.findMany({
@@ -83,7 +84,7 @@ export default async function Search({
           {restaurant.length ? (
             <>
               {restaurant.map(rest => (
-                <RestaurantCar restaurant={rest} key={rest.id} />
+                <RestaurantCard restaurant={rest} key={rest.id} />
               ))}
             </>
           ) : (
