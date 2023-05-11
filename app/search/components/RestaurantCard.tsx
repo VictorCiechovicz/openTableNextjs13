@@ -40,9 +40,9 @@ export default function RestaurantCard({
         </div>
         <div className="mb-9">
           <div className="font-light flex text-reg">
-            <p className="mr-4">
+            <div className="mr-4">
               <Price price={restaurant.price} />
-            </p>
+            </div>
             <p className="mr-4 capitalize">{restaurant.cuisine.name}</p>
             <p className="mr-4 capitalize">{restaurant.location.name}</p>
           </div>

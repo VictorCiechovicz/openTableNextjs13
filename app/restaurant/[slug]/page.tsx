@@ -1,5 +1,6 @@
 import { PrismaClient, Review } from '@prisma/client'
 import DescriptionPortion from '../components/DescriptionPortion'
+import { notFound } from 'next/navigation'
 
 interface Restaurante {
   id: number
@@ -28,7 +29,7 @@ const fetchRestaurantsBySlug = async (slug: string): Promise<Restaurante> => {
   })
 
   if (!restaurants) {
-    throw new Error()
+  notFound()
   }
 
   return restaurants
