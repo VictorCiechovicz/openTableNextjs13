@@ -1,4 +1,5 @@
 import { Review } from '@prisma/client'
+import Stars from '../../components/Stars'
 
 interface ReviewsCardProps {
   reviews: Review[]
@@ -22,7 +23,7 @@ export default function ReviewCard({ reviews }: ReviewsCardProps) {
           </div>
           <div className="ml-10 w-5/6">
             <div className="flex items-center">
-              <div className="flex mr-5">*****</div>
+            <Stars reviews={reviews}/>
             </div>
             <div className="mt-5">
               <p className="text-lg font-light">{review.text}</p>
