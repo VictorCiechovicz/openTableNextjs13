@@ -65,7 +65,7 @@ export default async function handler(req: NextApiRequest,
 
     return res.status(200).json(
       {
-        hello: token
+        token
       });
 
   }

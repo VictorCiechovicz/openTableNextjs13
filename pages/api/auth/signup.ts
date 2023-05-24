@@ -92,9 +92,9 @@ export default async function handler(req: NextApiRequest,
       email: user.email
     }).setProtectedHeader({ alg }).setExpirationTime("24h").sign(secret)
 
-   return res.status(200).json(
+    return res.status(200).json(
       {
-        hello: token
+        token
       });
 
   }
