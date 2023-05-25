@@ -14,7 +14,7 @@ export default function AuthInputs({
   return (
     <div>
       {isSignin ? null : (
-        <div className="m-3 flex justify-between text-sm ">
+        <div className="mt-3 flex justify-between text-sm ">
           <input
             type="text"
             className="bg-white text-black  border rounedd py-3 p-2 w-[49%] "
@@ -33,7 +33,7 @@ export default function AuthInputs({
           />
         </div>
       )}
-      <div className="m-3 flex justify-between text-sm">
+      <div className="mt-3 flex justify-between text-sm">
         <input
           type="email"
           className="bg-white text-black  border rounedd py-3 p-2 w-full"
@@ -44,7 +44,7 @@ export default function AuthInputs({
         />
       </div>
       {isSignin ? null : (
-        <div className="m-3 flex justify-between text-sm">
+        <div className="mt-3 flex justify-between text-sm">
           <input
             type="text"
             className="bg-white text-black  border rounedd py-3 p-2 w-[49%] "
@@ -63,7 +63,7 @@ export default function AuthInputs({
           />
         </div>
       )}
-      <div className="m-3 flex justify-between text-sm">
+      <div className="my-3 flex justify-between text-sm">
         <input
           type="password"
           className="bg-white text-black border rounedd py-3 p-2 w-full"
