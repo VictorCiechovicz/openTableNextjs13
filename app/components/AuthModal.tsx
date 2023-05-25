@@ -1,11 +1,10 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
 import AuthInputs from './AuthInputs'
 import useAuth from '../../hooks/useAuth'
+import { AuthenticationContext } from '../context/AuthContext'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -32,6 +31,7 @@ export interface CreateUser {
 }
 
 export default function AuthModal({ isSignin }: LoginModalProps) {
+
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
