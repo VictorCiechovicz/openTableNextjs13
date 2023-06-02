@@ -8,6 +8,8 @@ interface Restaurante {
   slug: string
   images: string[]
   description: string
+  open_time: string
+  close_time: string
   reviews: Review[]
 }
 
@@ -24,12 +26,14 @@ const fetchRestaurantsBySlug = async (slug: string): Promise<Restaurante> => {
       images: true,
       description: true,
       slug: true,
-      reviews: true
+      reviews: true,
+      open_time: true,
+      close_time: true
     }
   })
 
   if (!restaurants) {
-  notFound()
+    notFound()
   }
 
   return restaurants
@@ -50,6 +54,8 @@ export default async function RestaurantDetails({
         title={restaurant.name}
         description={restaurant.description}
         reviews={restaurant.reviews}
+        openTime={restaurant.open_time}
+        closeTime={restaurant.close_time}
       />
     </>
   )
