@@ -7,9 +7,13 @@ import Description from '../components/Description'
 import Images from '../components/Images'
 import Reviews from '../components/Reviews'
 import { Review } from '@prisma/client'
-import { partySize, times } from '../../../data/index'
+import { partySize as partySizes, times } from '../../../data/index'
 import DatePicker from 'react-datepicker'
 import { useState } from 'react'
+import useAvailabilities from '../../../hooks/useAvailabilities'
+import { CircularProgress } from '@mui/material'
+import Link from 'next/link'
+import { Time, convertToDisplayTime } from '../../../utils/convertToDisplayTime'
 
 interface Props {
   description: string
@@ -31,12 +35,27 @@ export default function DescriptionPortion({
   closeTime
 }: Props) {
   const [selectDate, setSelectDate] = useState<Date | null>(new Date())
+  const [time, setTime] = useState(openTime)
+  const [partySize, setPartySize] = useState('1')
+  const [day, setDay] = useState(new Date().toISOString().split('T')[0])
+
+  const { data, error, loading, fetchAvailabilities } = useAvailabilities()
 
   const handleChangeDate = (date: Date | null) => {
     if (date) {
+      setDay(date.toISOString().split('T')[0])
       return setSelectDate(date)
     }
     return setSelectDate(null)
+  }
+
+  const handleClick = () => {
+    fetchAvailabilities({
+      slug,
+      day,
+      time,
+      partySize
+    })
   }
 
   const filterTimeByRestaurantOpenWindow = () => {
@@ -78,8 +97,14 @@ export default function DescriptionPortion({
           </div>
           <div className="my-3 flex flex-col ">
             <label htmlFor="">Party size</label>
-            <select name="" className="py-3 border-b font-light bg-white" id="">
-              {partySize.map(party => (
+            <select
+              name=""
+              className="py-3 border-b font-light bg-white"
+              id=""
+              value={partySize}
+              onChange={e => setPartySize(e.target.value)}
+            >
+              {partySizes.map(party => (
                 <option value={party.value}>{party.label}</option>
               ))}
             </select>
@@ -101,6 +126,8 @@ export default function DescriptionPortion({
                 name=""
                 id=""
                 className="py-3 border-b font-light bg-white"
+                value={time}
+                onChange={e => setTime(e.target.value)}
               >
                 {filterTimeByRestaurantOpenWindow().map(time => (
                   <option value={time.time}>{time.displayTime}</option>
@@ -109,10 +136,36 @@ export default function DescriptionPortion({
             </div>
           </div>
           <div className="mt-5">
-            <button className="bg-red-600 rounded w-full px-4 text-white font-bold h-16">
-              Find a Time
+            <button
+              className="bg-red-600 rounded w-full px-4 text-white font-bold h-16"
+              onClick={handleClick}
+              disabled={loading}
+            >
+              {loading ? <CircularProgress color="inherit" /> : 'Find a Time'}
             </button>
           </div>
+
+          {data && data.length ? (
+            <div className="mt-4">
+              <p className="text-reg">Select a Time</p>
+              <div className="flex flex-wrap mt-2">
+                {data.map(time => {
+                  return time.available ? (
+                    <Link
+                      href={`/reserve/${slug}?date=${day}T${time.time}&partySize=${partySize}`}
+                      className="bg-red-600 cursor-pointer p-2 w-24 text-center text-white mb-3 rounded mr-3"
+                    >
+                      <p className="text-sm font-bold">
+                        {convertToDisplayTime(time.time as Time)}
+                      </p>
+                    </Link>
+                  ) : (
+                    <p className="bg-gay-300 p-2 w-24 mb-3 rounded mr-3"></p>
+                  )
+                })}
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </>
