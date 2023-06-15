@@ -58,21 +58,24 @@ export default function AuthModal({ isSignin }: LoginModalProps) {
     if (isSignin) {
       if (inputs.email && inputs.password) {
         return setDisable(false)
-      } else {
-        if (
-          inputs.firstName &&
-          inputs.lastName &&
-          inputs.email &&
-          inputs.password &&
-          inputs.phone &&
-          inputs.city
-        ) {
-          return setDisable(false)
-        }
+      }
+    } else {
+      if (
+        inputs.firstName &&
+        inputs.lastName &&
+        inputs.email &&
+        inputs.password &&
+        inputs.phone &&
+        inputs.city
+      ) {
+        return setDisable(false)
       }
     }
+
     setDisable(true)
   }, [inputs])
+
+  console.log(disable)
 
   const handleClick = () => {
     if (isSignin) {
