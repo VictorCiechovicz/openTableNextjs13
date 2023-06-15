@@ -12,7 +12,7 @@ export const FindAvailableTables = async ({ time, day, res, restaurant }: {
     tables: Table[];
     open_time: string;
     close_time: string;
-}
+} 
 }) => {
   const searchTimes = times.find(t => {
     return t.time === time
