@@ -1,3 +1,4 @@
+'use client'
 
 import RestaurantNavBar from '../components/RestaurantNavBar'
 import Title from '../components/Title'
