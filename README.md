@@ -1,4 +1,5 @@
-![image](https://user-images.githubusercontent.com/106246945/233609418-2c718ecf-3752-4c04-91fe-57bd7f1c13be.png)
+![image](https://github.com/VictorCiechovicz/openTableNextjs13/assets/106246945/e05a378f-7b5c-49df-9bc9-4eaf31b632ae)
+
 
 # ****💻 Study Next.js****
 
