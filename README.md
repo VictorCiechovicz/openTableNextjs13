@@ -12,7 +12,6 @@ This application restaurant reservation using Next.js. This application was crea
 - Tailwind CSS
 - SupaBase
 - Prisma
-- Deploy Vercel
 
 ## 🔧 ****Running****
 
