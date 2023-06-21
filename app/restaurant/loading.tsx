@@ -1,10 +1,10 @@
-import Header from './[slug]/head'
+import React from "react";
 
 export default function Loading() {
   return (
     <main>
       <div className="h-96 overflow-hidden animate-pulse bg-slate-200">
-        <div className='bg-center h-full' />
+        <div className={`bg-center h-full`} />
       </div>
       <div className="flex  m-auto w-2/3 justify-between items-start 0 -mt-9">
         <div className="bg-white w-[70%] rounded p-3 shadow">
@@ -27,5 +27,5 @@ export default function Loading() {
         </div>
       </div>
     </main>
-  )
+  );
 }

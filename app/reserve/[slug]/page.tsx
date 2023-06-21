@@ -1,32 +1,32 @@
-import { PrismaClient } from '@prisma/client'
-import Form from '../components/Form'
-import Header from '../components/Header'
-import { notFound } from 'next/navigation'
+import { PrismaClient } from "@prisma/client";
+import { notFound } from "next/navigation";
+import Form from "./components/Form";
+import Header from "./components/Header";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 const fetchRestaurantBySlug = async (slug: string) => {
   const restaurant = await prisma.restaurant.findUnique({
     where: {
-      slug
-    }
-  })
+      slug,
+    },
+  });
+
   if (!restaurant) {
-    notFound()
+    notFound();
   }
 
-  return restaurant
-}
+  return restaurant;
+};
 
 export default async function Reserve({
   params,
-  searchParams
+  searchParams,
 }: {
-  params: { slug: string }
-  searchParams: { date: string; partySize: string }
+  params: { slug: string };
+  searchParams: { date: string; partySize: string };
 }) {
-  const restaurant = await fetchRestaurantBySlug(params.slug)
-
+  const restaurant = await fetchRestaurantBySlug(params.slug);
   return (
     <div className="border-t h-screen">
       <div className="py-9 w-3/5 m-auto">
@@ -36,8 +36,12 @@ export default async function Reserve({
           date={searchParams.date}
           partySize={searchParams.partySize}
         />
-        <Form slug={params.slug}  date={searchParams.date} partySize={searchParams.partySize} />
+        <Form
+          partySize={searchParams.partySize}
+          slug={params.slug}
+          date={searchParams.date}
+        />
       </div>
     </div>
-  )
+  );
 }

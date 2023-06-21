@@ -1,12 +1,11 @@
-import './globals.css'
-import NavBar from './components/NavBar'
-import AuthContext from './context/AuthContext'
-import 'react-datepicker/dist/react-datepicker.css'
-
+import NavBar from "./components/NavBar";
+import AuthContext from "./context/AuthContext";
+import "./globals.css";
+import "react-datepicker/dist/react-datepicker.css";
 export default function RootLayout({
-  children
+  children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -26,5 +25,5 @@ export default function RootLayout({
         </main>
       </body>
     </html>
-  )
+  );
 }
