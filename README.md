@@ -1,17 +1,18 @@
 ![image](https://github.com/VictorCiechovicz/openTableNextjs13/assets/106246945/e05a378f-7b5c-49df-9bc9-4eaf31b632ae)
 
 
-# ****💻 Study Next.js****
+# ****👨🏻‍🍳 OpenTable****
 
- This application is landing page uisng Next.ja. This application was created for the purpose of studies.
+This application restaurant reservation using Next.js. This application was created for the purpose of studies.
  
 ## ****✨ Stack****
 
 - NEXT.js
-- JavaScript
+- TypeScript
+- Tailwind CSS
+- SupaBase
+- Prisma
 - Deploy Vercel
-- Css
-- Navigation
 
 ## 🔧 ****Running****
 
